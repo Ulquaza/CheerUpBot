@@ -15,8 +15,26 @@ namespace CheerUpBot
         static List<string> photos = new List<string>()
         {
             "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/capy.jpg",
-            "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/oups.png",
+            "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/doggo.jpg",
             "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/rabbits.jpg",
+        };
+
+        static List<string> advices = new List<string>()
+        {
+            "Не бойтесь бояться.\nИногда единственное, что сдерживает ваш рост — это то, чего вы больше всего боитесь.",
+            "Используйте кризис как возможность.\nКаждая потеря ведет к новой возможности, а каждая трудная ситуация таит в себе потенциал.",
+        };
+
+        static List<string> jokes = new List<string>()
+        {
+            "К Штирлицу постучали. Это был человек в фуфайке и на лыжах\r\n— Фуфлыжник. — Догадался Штирлиц.",
+            "Штирлиц попал в глубокую яму и чудом из нее вылез.\r\n«Чудес не бывает», — подумал Штирлиц и на всякий случай залез обратно.",
+        };
+
+        static List<string> supports = new List<string>()
+        {
+            "«Бездействие порождает беспокойство и страх. Действие — уверенность и смелость. Если ты хочешь победить страх, не сиди дома и не думай об этом. Встань и действуй».\nМэг Джей",
+            "«Сила происходит не от побед. Силу порождает борьба. Когда вы проходите через трудности и решаете не сдаваться — это и есть сила».\nАрнольд Шварценеггер",
         };
 
         public static async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
@@ -58,9 +76,30 @@ namespace CheerUpBot
                 switch (data)
                 {
                     case "photo":
-                        Message sentPhoto = await botClient.SendPhotoAsync(
+                        await botClient.SendPhotoAsync(
                             chatId: chatId,
                             photo: InputFile.FromUri(photos[random.Next(0, photos.Count)]),
+                            replyMarkup: GetKeyboard(),
+                            cancellationToken: cancellationToken);
+                        return;
+                    case "advice":
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: advices[random.Next(0, advices.Count)],
+                            replyMarkup: GetKeyboard(),
+                            cancellationToken: cancellationToken);
+                        return;
+                    case "joke":
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: jokes[random.Next(0, jokes.Count)],
+                            replyMarkup: GetKeyboard(),
+                            cancellationToken: cancellationToken);
+                        return;
+                    case "support":
+                        await botClient.SendTextMessageAsync(
+                            chatId: chatId,
+                            text: supports[random.Next(0, supports.Count)],
                             replyMarkup: GetKeyboard(),
                             cancellationToken: cancellationToken);
                         return;
