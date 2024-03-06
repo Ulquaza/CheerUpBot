@@ -17,6 +17,7 @@ namespace CheerUpBot
             "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/capy.jpg",
             "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/doggo.jpg",
             "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/rabbits.jpg",
+            "https://raw.githubusercontent.com/Ulquaza/CheerUpBot/main/bin/Debug/net7.0/pics/cats.jpg",
         };
 
         static List<string> advices = new List<string>()
